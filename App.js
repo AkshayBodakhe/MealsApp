@@ -9,13 +9,16 @@ import MealsOverviewScreen from "./screens/MealsOverviewScreen";
 import MealDetaillScreen from "./screens/MealDetaillScreen";
 import "react-native-gesture-handler";
 import FavoritesScreen from "./screens/FavoritesScreen";
-import FavoritesContextProvider from "./store/context/favorites-context";
+// import FavoritesContextProvider from "./store/context/favorites-context";
+import { Provider } from "react-redux";
+import {store} from './store/redux/store'
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
 
 function DrawerNavigator() {
   return (
+    
     <Drawer.Navigator
       screenOptions={{
         headerStyle: { backgroundColor: "#351401" },
@@ -39,6 +42,7 @@ function DrawerNavigator() {
         drawerIcon : ({color,size}) => <Ionicons name="star" color={color} size={size}/>
       }}
       />
+    
     </Drawer.Navigator>
   );
 }
@@ -47,7 +51,8 @@ export default function App() {
   return (
     <>
       <StatusBar style="light" />
-      <FavoritesContextProvider>
+      {/* <FavoritesContextProvider> */}
+      <Provider store={store}>
       <NavigationContainer>
         <Stack.Navigator
           initialRouteName="MealsCategories"
@@ -74,7 +79,8 @@ export default function App() {
           />
         </Stack.Navigator>
       </NavigationContainer>
-    </FavoritesContextProvider>
+      </Provider>
+    {/* </FavoritesContextProvider> */}
     </>
   );
 }
