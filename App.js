@@ -9,6 +9,7 @@ import MealsOverviewScreen from "./screens/MealsOverviewScreen";
 import MealDetaillScreen from "./screens/MealDetaillScreen";
 import "react-native-gesture-handler";
 import FavoritesScreen from "./screens/FavoritesScreen";
+import FavoritesContextProvider from "./store/context/favorites-context";
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -46,6 +47,7 @@ export default function App() {
   return (
     <>
       <StatusBar style="light" />
+      <FavoritesContextProvider>
       <NavigationContainer>
         <Stack.Navigator
           initialRouteName="MealsCategories"
@@ -72,6 +74,7 @@ export default function App() {
           />
         </Stack.Navigator>
       </NavigationContainer>
+    </FavoritesContextProvider>
     </>
   );
 }
